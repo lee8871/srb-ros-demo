@@ -17,3 +17,6 @@
       output="screen" launch-prefix="gnome-terminal --">
     </node>
 </launch>
+
+    <node name="edel_feet" pkg = "srb_demo" type = "agv_test">
+    </node>

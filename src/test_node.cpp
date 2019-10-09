@@ -34,7 +34,8 @@ void chatterCallback(const geometry_msgs::Twist& msg)
   key_ctrl_DUMOTOR->Data()->ma.brake = no;
   key_ctrl_DUMOTOR->Data()->ma.speed = 100*(msg.linear.x+msg.angular.z);
   key_ctrl_DUMOTOR->Data()->mb.brake = no;
-  key_ctrl_DUMOTOR->Data()->mb.speed= -100*(msg.linear.x-msg.angular.z);
+  key_ctrl_DUMOTOR->Data()->mb.speed = -100*(msg.linear.x-msg.angular.z);
+    ROS_INFO("I heard: (%f,%f)", msg.linear.x, msg.angular.z);
   key_ctrl_DUMOTOR->sendAccess(0);
   mainbusUB->doAccess();
 }
@@ -89,7 +90,7 @@ int main(int argc, char **argv)
    * callbacks will be called from within this thread (the main one).  ros::spin()
    * will exit when Ctrl-C is pressed, or the node is shutdown by the master.
    */
-  ros::Subscriber sub = n.subscribe("turtle1/cmd_vel", 1000, chatterCallback);
+  ros::Subscriber sub = n.subscribe("cmd_vel", 1000, chatterCallback);
   ros::spin();
   return 0;
 }
