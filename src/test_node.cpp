@@ -30,12 +30,21 @@ SrbMaster* mainSRBM=nullptr;
 
 void chatterCallback(const geometry_msgs::Twist& msg)
 {
-  ROS_INFO("I heard: (%f,%f)", msg.linear.x, msg.angular.z);
+  ROS_DEBUG("I heard: (%f,%f)", msg.linear.x, msg.angular.z);
   key_ctrl_DUMOTOR->Data()->ma.brake = no;
-  key_ctrl_DUMOTOR->Data()->ma.speed = 100*(msg.linear.x+msg.angular.z);
   key_ctrl_DUMOTOR->Data()->mb.brake = no;
-  key_ctrl_DUMOTOR->Data()->mb.speed = -100*(msg.linear.x-msg.angular.z);
-    ROS_INFO("I heard: (%f,%f)", msg.linear.x, msg.angular.z);
+
+  int speed_temp;
+  speed_temp = 100*(msg.linear.x+msg.angular.z);
+  if(speed_temp>10){speed_temp+=50;}
+  if(speed_temp<-10){speed_temp-=50;}
+  key_ctrl_DUMOTOR->Data()->ma.speed = speed_temp;
+
+  speed_temp = 100*(msg.linear.x-msg.angular.z);
+  if(speed_temp>10){speed_temp+=50;}
+  if(speed_temp<-10){speed_temp-=50;}
+  key_ctrl_DUMOTOR->Data()->mb.speed = speed_temp;
+
   key_ctrl_DUMOTOR->sendAccess(0);
   mainbusUB->doAccess();
 }
