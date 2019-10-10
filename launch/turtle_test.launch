@@ -1,7 +1,7 @@
 <launch>
     <param name="bus_name" value="Edel-Saber">
     </param>
-    <param name="feet_motor_name" value="foos">
+    <param name="feet_motor_name" value="foot">
     </param>
     <param name="joy_node/dev" value="/dev/input/js0">
     </param>
@@ -13,6 +13,9 @@
     </node>
     <node name="turtlesim" pkg = "turtlesim" type = "turtlesim_node">
       <remap from="/turtle1/cmd_vel" to="/cmd_vel"/>
+    </node>
+    <node name="edel_feet" pkg = "srb_demo" type = "agv_test"
+      output="screen" launch-prefix="gnome-terminal --">
     </node>
 
 </launch>
