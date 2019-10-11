@@ -1,12 +1,9 @@
 <launch>
-    <param name="bus_name" value="Edel-Saber">
-    </param>
-    <param name="feet_motor_name" value="foot">
-    </param>
+
+    <include file="~/srb_coinfig.launch">
+        </include>
     <param name="joy_node/dev" value="/dev/input/js0">
     </param>
-
-
     <node name="joy" pkg = "joy" type = "joy_node">
     </node>
     <node name="joy_to_cmd" pkg = "teleop_twist_joy" type = "teleop_node">

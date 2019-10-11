@@ -1,0 +1,6 @@
+<launch>
+    <param name="bus_name" value="Edel-Saber">
+    </param>
+    <param name="feet_motor_name" value="foot">
+    </param>
+</launch>
