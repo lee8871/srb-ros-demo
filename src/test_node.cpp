@@ -23,10 +23,6 @@ UsbToSrb* mainbusUB=nullptr;
 SrbMaster* mainSRBM=nullptr;
 
 
-/**
- * This tutorial demonstrates simple receipt of messages over the ROS system.
- */
-
 
 void chatterCallback(const geometry_msgs::Twist& msg)
 {
@@ -61,25 +57,21 @@ int main(int argc, char **argv)
    * part of the ROS system.
    */
   ros::init(argc, argv, "SRB_test");
-  /**
-   * NodeHandle is the main access point to communications with the ROS system.
-   * The first NodeHandle constructed will fully initialize this node, and the last
-   * NodeHandle destructed will close down the node.
-   */
   ros::NodeHandle n;
-  ROS_INFO("entern main()");
 
-  mainbusUB = new UsbToSrb();
-  mainSRBM = new SrbMaster(mainbusUB);
+  //FOLLOWING IS SRB CODEING
+  //To setting the SRB, you shold give name of the SRB bus and agv motor drive.
 	std::string usb_port_name;
 	std::string dumotor_name;
   if(!n.getParam("bus_name", usb_port_name)){
-    ROS_ERROR("Bus name should set in bus_name.");
+    ROS_ERROR("Bus name should set in usb_port_name.");
   }
-
   if(!n.getParam("feet_motor_name", dumotor_name)){
-    ROS_ERROR("node name should set in bus_name.");
+    ROS_ERROR("node name should set in dumotor_name.");
   }
+  //Initialization a USB bus, and create a SrbMaster
+  mainbusUB = new UsbToSrb();
+  mainSRBM = new SrbMaster(mainbusUB);
 
   auto rev = mainbusUB->openUsbByName(usb_port_name.c_str());
 	if (rev != done) {
