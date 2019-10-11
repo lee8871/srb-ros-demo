@@ -9,6 +9,6 @@
         <remap from="/turtle1/cmd_vel" to="/cmd_vel"/>
     </node>
       <node name="edel_feet" pkg = "srb_demo" type = "agv_test"
-        output="screen" launch-prefix="gnome-terminal --">
+        output="screen">
       </node>
 </launch>
