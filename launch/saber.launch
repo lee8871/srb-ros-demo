@@ -1,7 +1,7 @@
 <launch>
     <param name="bus_name" value="Edel-Saber">
     </param>
-    <param name="feet_motor_name" value="foou">
+    <param name="feet_motor_name" value="foot">
     </param>
 
     <node name="turtlesim1" pkg = "turtlesim" type = "turtlesim_node">
