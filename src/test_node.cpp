@@ -59,15 +59,15 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "SRB_test");
   ros::NodeHandle n;
 
-  //FOLLOWING IS SRB CODEING
+  //FOLLOWING IS SRB CODING
   //To setting the SRB, you shold give name of the SRB bus and agv motor drive.
 	std::string usb_port_name;
 	std::string dumotor_name;
   if(!n.getParam("bus_name", usb_port_name)){
-    ROS_ERROR("Bus name should set in usb_port_name.");
+    ROS_ERROR("Bus name should set in bus_name.");
   }
   if(!n.getParam("feet_motor_name", dumotor_name)){
-    ROS_ERROR("node name should set in dumotor_name.");
+    ROS_ERROR("node name should set in bus_name.");
   }
   //Initialization a USB bus, and create a SrbMaster
   mainbusUB = new UsbToSrb();
@@ -92,6 +92,18 @@ int main(int argc, char **argv)
    * will exit when Ctrl-C is pressed, or the node is shutdown by the master.
    */
   ros::Subscriber sub = n.subscribe("cmd_vel", 1000, chatterCallback);
-  ros::spin();
+
+
+
+  ros::Rate loop_rate(10);
+  int count = 0;
+  while (ros::ok())  {
+
+    chatter_pub.publish(msg);
+
+    ros::spinOnce();
+    loop_rate.sleep();
+  }
+  //ros::spin();
   return 0;
 }
