@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   roscpp
   std_msgs
+  tf
 )
 
 set(SRB_INCLUDE_PATH "~/srb_ws/SRB-Frame-lib/")
