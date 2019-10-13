@@ -1,5 +1,4 @@
 <launch>
-
     <include file="~/srb_coinfig.launch">
         </include>
     <param name="joy_node/dev" value="/dev/input/js0">
