@@ -1,6 +1,7 @@
 <launch>
     <include file="$(env HOME)/srb_coinfig.launch"/>
     <include file="$(find srb_demo)/launch/lidar.launch"/>
+    <include file="$(find srb_demo)/launch/joy_cmdrel.launch"/>
 
     <node name="edel_feet" pkg = "srb_demo" type = "agv_test"
         output="screen">

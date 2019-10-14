@@ -117,8 +117,8 @@ int main(int argc, char **argv)
         }
         key_ctrl_DUMOTOR->Data()->ma.brake = no;
         key_ctrl_DUMOTOR->Data()->mb.brake = no;
-        key_ctrl_DUMOTOR->Data()->ma.speed = agvCmdToMotor(Cmd_liner,Cmd_angular);
-        key_ctrl_DUMOTOR->Data()->mb.speed = agvCmdToMotor(Cmd_liner,-Cmd_angular);
+        key_ctrl_DUMOTOR->Data()->ma.speed = agvCmdToMotor(Cmd_liner*4.0,Cmd_angular/3.0);
+        key_ctrl_DUMOTOR->Data()->mb.speed = agvCmdToMotor(Cmd_liner*4.0,-Cmd_angular/3.0);
         key_ctrl_DUMOTOR->sendAccess(0);
         mainbusUB->doAccess();
         //access end

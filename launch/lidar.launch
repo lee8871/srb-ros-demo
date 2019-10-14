@@ -1,6 +1,6 @@
 <launch>
 <node name="base_link_lidar"  pkg="tf" type="static_transform_publisher"
-    args="0 0 0.08 0 0 0 edel lidar 1000" />
+    args="0 0 0.08 -0.1745 0 0 edel lidar 1000" />
 
     <node name="lidar_D1"  pkg="delta_lidar" type="delta_lidar_node">
         <param name="serial_port" value="/dev/ttyUSB0"/>
